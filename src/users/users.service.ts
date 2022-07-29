@@ -1,8 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { isBuffer } from 'util';
 import { Account } from './users.entity';
-import { DataSource } from 'typeorm';
+
 
 @Injectable()
 
@@ -13,5 +14,25 @@ export class UsersService{
     
     async createUsers(newAccount: {email: string, password: string}){
         this.accountRepository.save(newAccount)
+    }
+
+    async checkUsers( check : { email : string , password : string } )
+    {
+
+        const user = await this.accountRepository.findOne({
+            where : {
+                email : check.email,
+            }
+        })
+
+            if( !!user ){
+                if( check.password === user.password ){
+                    return {message: "login success"}
+                }else{
+                    throw new UnauthorizedException("Password incorrect")
+                }
+            }else 
+            throw new UnauthorizedException("Tai khong ton tai ")
+
     }
 }

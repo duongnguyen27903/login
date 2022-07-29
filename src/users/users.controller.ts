@@ -1,11 +1,11 @@
 import { BadRequestException, Body, Controller, Get, Post } from '@nestjs/common';
 import { UsersService } from './users.service';
-import md5 from "md5"
+
 @Controller('users')
 export class UsersController {
-    constructor(public usersService: UsersService) { }
+    constructor(private usersService: UsersService) { }
     @Post("signup")
-    async login(@Body() body) {
+    async signup(@Body() body) {
         // console.log(body);
     const newUser = { ...body/* password: md5(body.password)*/ }
         try {
@@ -18,8 +18,11 @@ export class UsersController {
         }
     }
 
-    
-
-    
+    @Post("login")
+    async ( @Body() body ){
+        const userAccount = {...body };
+        
+        return this.usersService.checkUsers(userAccount);
+    }
     
 }
