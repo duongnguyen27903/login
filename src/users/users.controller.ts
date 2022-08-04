@@ -21,7 +21,6 @@ export class UsersController {
     @Post("login")
     async ( @Body() body ){
         const userAccount = {...body };
-        
         return this.usersService.checkUsers(userAccount);
     }
     

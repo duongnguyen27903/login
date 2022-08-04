@@ -4,7 +4,7 @@ import { Column, Entity, Generated, PrimaryColumn, PrimaryGeneratedColumn } from
 export class Account {
     @PrimaryGeneratedColumn()
     id:number;
-    @Column({ unique: true })
+    @Column({ nullable : true, unique : true })
     email: string;
     @Column({ nullable: true })
     password: string;
