@@ -22,7 +22,6 @@ export class UsersService{
                 email : check.email,
             }
         })
-
             if( !!user ){
                 if( check.password === user.password ){
                     return {message: "login success"}
@@ -31,6 +30,5 @@ export class UsersService{
                 }
             }else 
             throw new UnauthorizedException("Tai khong ton tai ")
-
     }
 }
