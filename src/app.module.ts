@@ -8,14 +8,15 @@ import { Account } from './users/users.entity';
     type: 'postgres',
     host: 'rosie.db.elephantsql.com',
     port: 5432,
-    username: 'pqbwmkbs',
-    password: '8zk0r5UmWqWNfYExCvXK2AgCvM-xOWIO',
-    database: 'pqbwmkbs',
+    username: 'uiyweqpb',
+    password: 'Qd418S7HbTWB9ElZDFV5bPNl-SCL1XOl',
+    database: 'uiyweqpb',
     entities: [Account],
+    keepConnectionAlive: true,
     synchronize: true,
     
   }),
-  UsersModule
+  UsersModule,
 ],
 
 })

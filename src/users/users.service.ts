@@ -12,6 +12,7 @@ export class UsersService{
     
     async createUsers(newAccount: {email: string, password: string}){
         this.accountRepository.save(newAccount)
+
     }
 
     async checkUsers( check : { email : string , password : string } )
@@ -22,13 +23,13 @@ export class UsersService{
                 email : check.email,
             }
         })
-            if( !!user ){
-                if( check.password === user.password ){
-                    return {message: "login success"}
-                }else{
-                    throw new UnauthorizedException("Password incorrect")
-                }
-            }else 
-            throw new UnauthorizedException("Tai khong ton tai ")
+        if( !!user ){
+            if( check.password == user.password ){
+                return {message: "login success"}
+            }else{
+                throw new UnauthorizedException("Password incorrect")
+            }
+        }else 
+        throw new UnauthorizedException("Tai khoan khong ton tai ")
     }
 }
